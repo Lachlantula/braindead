@@ -1,29 +1,32 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+  <div id="app" :class="this.$store.getters.checkBackgroundState">
+    <router-view/>
   </div>
 </template>
 
 <style lang="scss">
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  transition: background 0.2s linear;
+  font-family: "Objektiv Mk1", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  height: 100%;
+  margin: 0;
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.is-running {
+  background: hsl(155, 80%, 80%);
+}
+.not-running {
+  background: hsl(180, 41%, 95%);
+}
+.is-editing {
+  background: hsl(180, 40%, 90%);
 }
 </style>
