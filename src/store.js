@@ -1,11 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { stat } from "fs-extra-p";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     backgroundState: "not-running",
+    notificationsToPing: [],
     editingFileName: false
   },
   mutations: {
@@ -20,16 +22,26 @@ export default new Vuex.Store({
     },
     updateEditingFileName(state) {
       state.editingFileName = !state.editingFileName;
+    },
+    pingNotification(state, { emoji, title, description }) {
+      state.notificationsToPing.push({
+        emoji: emoji,
+        title: title,
+        description: description
+      });
     }
   },
   getters: {
     checkBackgroundState: state => state.backgroundState,
-    checkIfEditingFileName: state => {
-      if (state.editingFileName) {
-        return "is-editing";
+    checkIfNotificationPinged: state => {
+      if (state.notificationsToPing) {
+        return "is-pinging";
       } else {
-        return "not-editing";
+        return "not-pinging";
       }
+    },
+    getNotifications: state => {
+      return state.notificationsToPing;
     }
   }
 });

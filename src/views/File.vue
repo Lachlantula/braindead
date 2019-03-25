@@ -2,7 +2,7 @@
   <div class="file">
     <ScriptName name="Greeting script"/>
     <Editor/>
-    <Tip/>
+    <NotificationContainer/>
   </div>
 </template>
 
@@ -10,14 +10,14 @@
 // @ is an alias to /src
 import ScriptName from "@/components/ScriptName.vue";
 import Editor from "@/components/Editor.vue";
-import Tip from "@/components/Tip.vue";
+import NotificationContainer from "@/components/NotificationContainer.vue";
 
 export default {
-  name: "file",
+  name: "File",
   components: {
     ScriptName,
     Editor,
-    Tip
+    NotificationContainer
   }
 };
 </script>
